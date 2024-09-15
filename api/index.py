@@ -6,7 +6,11 @@ from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+
+# Allow CORS for specific domains, methods, and headers
+CORS(app, resources={r"/download": {"origins": "http://localhost:3000"}},
+     methods=['POST', 'OPTIONS'],
+     allow_headers=['Content-Type'])
 
 logging.basicConfig(level=logging.INFO)
 
